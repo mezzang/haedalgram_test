@@ -1,21 +1,22 @@
 // src/pages/SignPage.tsx
+
 import styled from "styled-components";
 import iphone from "../assets/iphone.png";
-import logo from "../assets/logo.svg"; // 이미지 파일을 불러와 변수에 담는다.
-import { useState } from "react";
+import logo from "../assets/logo.svg";
+import { useEffect, useState } from "react";
 import SignInForm from "../components/sign/SignInForm";
 import SignUpForm from "../components/sign/SignUpForm";
+import useUserStore from "../store/userStore";
+import { useNavigate } from "react-router-dom";
 
 const Main = styled.main`
-  width: 100vw; // 100 %를 의미
-  height: 100vh; //100% 를 의미
+  width: 100vw;
+  height: 100vh;
 
   display: flex;
   flex-direction: row;
   justify-content: center;
-  //   가로축 가운데 정렬(주축 기준 정렬)
   align-items: center;
-  //   세로축 가운데 정렬(교차축 기준 정렬)
 `;
 
 const IphoneImg = styled.img`
@@ -27,14 +28,10 @@ const SignSection = styled.section`
   margin-left: 30px;
 
   display: flex;
-  //   flexbox컨테이너로 만든다.
   flex-direction: column;
-  // 요소가 위에서 아래로 쌓인다.
   align-items: center;
-  //   x축 기준으로 가운데 정렬
 
   border: 1px solid var(--color-grey-2);
-  //   실선 테두리
 `;
 
 const LogoImg = styled.img`
@@ -77,8 +74,15 @@ const SwitchSpan = styled.span`
 `;
 
 const SignPage = () => {
+  const { isLoggedIn } = useUserStore();
+  const navigate = useNavigate();
   const [isSignIn, setIsSignIn] = useState(true);
-  // 로그인인지 회원가입인지 구분.
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/");
+    }
+  }, [isLoggedIn, navigate]);
 
   const onClickSwitchSign = () => {
     setIsSignIn(!isSignIn);
