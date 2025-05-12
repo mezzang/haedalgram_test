@@ -11,7 +11,7 @@ type UserStore = {
   setUser: (user: TUser) => void;
 };
 
-const useUserStore = create<UserStore>(
+const useUserStore = create<UserStore>()(
   persist(
     (set) => ({
       isLoggedIn: false,

@@ -10,10 +10,10 @@ import {
   faRightFromBracket,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
-import useUserStore from "../../store/userStore";
+import useUserStore from "../../stores/userStore";
 import { useEffect } from "react";
 
-import useModalStore from "../../store/modalStore";
+import useModalStore from "../../stores/modalStore";
 import SearchModal from "../modal/SearchModal";
 
 const Nav = styled.nav`

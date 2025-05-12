@@ -5,7 +5,7 @@ import default_profile from "../../assets/default_profile.png";
 
 type Param = {
   size: string;
-  src: string;
+  src: string | null | undefined;
 };
 
 const ProfileImageWrapper = styled.div<{ size?: string }>`

@@ -10,6 +10,10 @@ type ModalStore = {
   isOpenSearchModal: boolean;
   openSearchModal: () => void;
   closeSearchModal: () => void;
+
+  isOpenEditModal: boolean;
+  openEditModal: () => void;
+  closeEditModal: () => void;
 };
 
 const useModalStore = create<ModalStore>((set) => ({
@@ -20,6 +24,10 @@ const useModalStore = create<ModalStore>((set) => ({
   isOpenSearchModal: false,
   openSearchModal: () => set({ isOpenSearchModal: true }),
   closeSearchModal: () => set({ isOpenSearchModal: false }),
+
+  isOpenEditModal: false,
+  openEditModal: () => set({ isOpenEditModal: true }),
+  closeEditModal: () => set({ isOpenEditModal: false }),
 }));
 
 export default useModalStore;

@@ -6,7 +6,7 @@ import logo from "../assets/logo.svg";
 import { useEffect, useState } from "react";
 import SignInForm from "../components/sign/SignInForm";
 import SignUpForm from "../components/sign/SignUpForm";
-import useUserStore from "../store/userStore";
+import useUserStore from "../stores/userStore";
 import { useNavigate } from "react-router-dom";
 
 const Main = styled.main`

@@ -1,7 +1,7 @@
 // src/components/modal/AddPostModal.tsx
 
 import styled from "styled-components";
-import useModalStore from "../../store/modalStore";
+import useModalStore from "../../stores/modalStore";
 import Modal from "../common/Modal";
 import React, { useState } from "react";
 import axios from "axios";
@@ -117,7 +117,9 @@ const AddPostModal = () => {
   const onClickUploadPost = () => {
     const formData = new FormData();
 
-    formData.append("image", imgFile);
+    if (imgFile) {
+      formData.append("image", imgFile);
+    }
     formData.append("content", content);
 
     axios

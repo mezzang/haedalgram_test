@@ -1,12 +1,12 @@
 // src/components/modal/SearchModal.tsx
 
 import styled from "styled-components";
-import useModalStore from "../../store/modalStore";
+import useModalStore from "../../stores/modalStore";
 import Modal from "../common/Modal";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { HOST } from "../../config";
-import useUserStore from "../../store/userStore";
+import useUserStore from "../../stores/userStore";
 import SearchModalItem from "./SearchModalItem";
 
 type Data = {

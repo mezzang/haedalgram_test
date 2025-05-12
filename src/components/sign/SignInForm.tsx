@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { TUser } from "../../types";
-import useUserStore from "../../store/userStore";
+import useUserStore from "../../stores/userStore";
 import axios from "axios";
 import { HOST } from "../../config";
 import { useNavigate } from "react-router-dom";

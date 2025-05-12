@@ -3,7 +3,7 @@
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
-import useModalStore from "../../store/modalStore";
+import useModalStore from "../../stores/modalStore";
 import AddPostModal from "../modal/AddPostModal";
 
 const Button = styled.button`

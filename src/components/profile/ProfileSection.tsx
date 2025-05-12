@@ -2,10 +2,13 @@
 
 import styled from "styled-components";
 import ProfileImage from "../common/ProfileImage";
-import useUserStore from "../../store/userStore";
+import useUserStore from "../../stores/userStore";
 import { useState } from "react";
 import axios from "axios";
 import { HOST } from "../../config";
+import useModalStore from "../../stores/modalStore";
+import EditModal from "../modal/EditModal";
+import { createPortal } from "react-dom";
 
 type Props = {
   id: number;
@@ -81,6 +84,7 @@ const ProfileSection = ({
   followingCount,
 }: Props) => {
   const { user } = useUserStore();
+  const { isOpenEditModal, openEditModal } = useModalStore();
   const [following, setFollowing] = useState(isFollowing);
 
   const onClickFollow = () => {
@@ -100,27 +104,30 @@ const ProfileSection = ({
   };
 
   return (
-    <Section>
-      <ProfileImage size="140px" src={imageData} />
-      <Div>
-        <NameFollowDiv>
-          <h1>{username}</h1>
-          {user?.id == id ? (
-            <Button>Edit Profile</Button>
-          ) : following ? (
-            <Button onClick={onClickFollow}>Following</Button>
-          ) : (
-            <Button onClick={onClickFollow}>Follow</Button>
-          )}
-        </NameFollowDiv>
-        <PostFollowerFollowingDiv>
-          <p>{postCount} posts</p>
-          <p>{followerCount} followers</p>
-          <p>{followingCount} followings</p>
-        </PostFollowerFollowingDiv>
-        <BioP>{bio}</BioP>
-      </Div>
-    </Section>
+    <>
+      {isOpenEditModal && createPortal(<EditModal />, document.body)}
+      <Section>
+        <ProfileImage size="140px" src={imageData} />
+        <Div>
+          <NameFollowDiv>
+            <h1>{username}</h1>
+            {user?.id == id ? (
+              <Button onClick={openEditModal}>Edit Profile</Button>
+            ) : following ? (
+              <Button onClick={onClickFollow}>Following</Button>
+            ) : (
+              <Button onClick={onClickFollow}>Follow</Button>
+            )}
+          </NameFollowDiv>
+          <PostFollowerFollowingDiv>
+            <p>{postCount} posts</p>
+            <p>{followerCount} followers</p>
+            <p>{followingCount} followings</p>
+          </PostFollowerFollowingDiv>
+          <BioP>{bio}</BioP>
+        </Div>
+      </Section>
+    </>
   );
 };
 
